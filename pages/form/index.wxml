@@ -1,0 +1,28 @@
+<view class="page-body">
+  <view class="page-section">
+    <view class="weui-cells__title">Email</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" bindinput="emailInput" focus placeholder=""/>
+      </view>
+    </view>
+  </view>
+  <view class="page-section">
+    <view class="weui-cells__title">Title</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input" bindinput="titleInput" maxlength="15" placeholder="" />
+      </view>
+    </view>
+  </view>
+  <view class="page-section">
+    <view class="weui-cells__title">Case Description</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <textarea bindblur="bindTextAreaBlur" maxlength="1000" bindinput="descInput" placeholder="" />
+      </view>
+    </view>
+  </view>
+  <view>{{result}}</view>
+  <button type="primary" class="submit-button" bindtap="submitCase"> Submit </button>
+</view>

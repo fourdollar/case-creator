@@ -9,6 +9,16 @@ App({
     // 登录
     wx.login({
       success: res => {
+        console.log(res);
+        wx.request({
+          url: 'http://47.101.58.35/api/wechat/login',
+          data:{code:res.code},
+          method:"POST",
+          success: function(response) {
+            console.log(response.data)// 服务器回包信息
+            this.globalData.userInfo = response.data.openId
+          }
+        })
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
@@ -34,6 +44,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    opendId: null
   }
 })

@@ -1,6 +1,8 @@
 <view class="page-body">
   <view class="page-section">
-    <view class="weui-cells__title">Email</view>
+    <view class="weui-cells__title">Email 
+      <view class="subject">请填写您希望我们联系您的邮箱地址</view>
+    </view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
         <input class="weui-input" bindinput="emailInput" focus placeholder=""/>
@@ -23,6 +25,7 @@
       </view>
     </view>
   </view>
-  <view>{{result}}</view>
+  <view wx:if="{{result}}">{{result}}</view>
+  <view wx:if="{{error}}" class="error">{{error}}</view>
   <button type="primary" class="submit-button" bindtap="submitCase"> Submit </button>
 </view>

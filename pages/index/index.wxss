@@ -18,4 +18,6 @@
 
 .button-wrap {
   margin-top: 100rpx;
+  width: 70%;
 }
+

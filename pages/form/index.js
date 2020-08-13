@@ -9,7 +9,8 @@ Page({
     email:"",
     title:"",
     desc:"",
-    result:""
+    result:"",
+    error:""
   },
   emailInput:function(e){
     this.setData({
@@ -91,17 +92,40 @@ Page({
   },
   submitCase: function(){
     this.setData({
-      result:JSON.stringify({
-        email:this.data.email,
-        title:this.data.title,
-        desc:this.data.desc
-      })
+      error:""
     })
+    if (this.data.email.length == 0) {
+      this.setData({
+        error:"email不能为空"
+      })
+    } else if (this.data.title.length == 0) {
+      this.setData({
+        error:"title不能为空"
+      })
+    }  else if (this.data.desc.length == 0) {
+      this.setData({
+        error:"desciption不能为空"
+      })
+    } else {
+      this.setData({
+        result:JSON.stringify({
+          email:this.data.email,
+          title:this.data.title,
+          desc:this.data.desc
+        })
+      })
+      wx.showToast({ // 显示Toast
+        title: '已发送',
+        icon: 'success',
+        duration: 1500
+      })
+    }
     console.log({
       email:this.data.email,
       title:this.data.title,
       desc:this.data.desc
     })
+    // wx.hideToast() // 隐藏Toast
   }
 },
 )

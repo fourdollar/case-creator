@@ -11,3 +11,7 @@
 page {
   background: #F8F8F8;
 }
+.error {
+  color: red;
+  font-size: 25rpx;
+}

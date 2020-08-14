@@ -1,0 +1,11 @@
+<view class="page">
+    <mp-msg type="success" title="Congratulations">
+        <view slot="desc">Thank you for contacting PayPal Merchant Technical Support. We will review your case in the order received and respond to you vie this email address.</view>
+        <view slot="handle">
+            <button class="weui-btn" bindtap="backToHome" type="primary">OK</button>
+        </view>
+        <view slot="footer">
+            <view class="weui-footer__text">Copyright © 2020 PayPal</view>
+        </view>
+    </mp-msg>
+</view>

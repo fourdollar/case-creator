@@ -83,41 +83,37 @@ Page({
     } else {
       var that = this;
       // 提交case
-      wx.request({
-        url: 'http://47.101.58.35/api/wechat/submitCase',
-        data:{
-          openId:app.globalData.openId,
-          email:this.data.email,
-          title:this.data.title,
-          desc:this.data.desc,
-        },
-        method:"POST",
-        success: function(res) {
-          console.log(res.data)// 服务器回包信息
-          wx.showToast({ // 显示Toast
-            title: '已发送',
-            icon: 'success',
-            duration: 1500
+      wx.requestSubscribeMessage({
+        tmplIds: ['1LzItjEHmZRygNk87kiYYH0T_rdEu71wR-RUERL2nSE','lsmCrmrQTYRSflS-uh4NuokYAx1UT7OBRcpswPA2xBE'],
+        success (response) {
+          console.log(response);
+          wx.navigateTo({
+            url:'../success/success'
           })
-          wx.requestSubscribeMessage({
-            tmplIds: ['1LzItjEHmZRygNk87kiYYH0T_rdEu71wR-RUERL2nSE','lsmCrmrQTYRSflS-uh4NuokYAx1UT7OBRcpswPA2xBE'],
-            success (response) {
-              console.log(response);
-              that.setData({
-                result:JSON.stringify({
-                  email:that.data.email,
-                  title:that.data.title,
-                  desc:that.data.desc,
-                  openId:app.globalData.openId,
-                  subscribeMessage:response
-                })
-              })
-            }
-          })
+          // that.setData({
+          //   result:JSON.stringify({
+          //     email:that.data.email,
+          //     title:that.data.title,
+          //     desc:that.data.desc,
+          //     openId:app.globalData.openId,
+          //     subscribeMessage:response
+          //   })
+          // })
         }
       })
+      // wx.request({
+      //   url: 'http://47.101.58.35/api/wechat/submitCase',
+      //   data:{
+      //     openId:app.globalData.openId,
+      //     email:this.data.email,
+      //     title:this.data.title,
+      //     desc:this.data.desc,
+      //   },
+      //   method:"POST",
+      //   success: function(res) {
+      //     console.log(res.data)// 服务器回包信息
+      //   }
+      // })
     }
-    // wx.hideToast() // 隐藏Toast
   }
-},
-)
+})

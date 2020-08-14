@@ -1,16 +1,20 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/form/form"
+    "pages/form/form",
+    "pages/success/success"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F8F8F8",
     "navigationBarTitleText": "PayPal MTS",
-    "navigationBarTextStyle":"black",
-    "backgroundColor":"#F8F8F8"
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F8F8F8"
   },
   "style": "v2",
+  "useExtendedLib": {
+    "weui": true
+  },
   "sitemapLocation": "sitemap.json"
 }

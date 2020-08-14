@@ -31,7 +31,7 @@
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.4",
+	"libVersion": "2.12.0",
 	"appid": "wxb4f9dec6e2937601",
 	"projectname": "miniprogram-1",
 	"debugOptions": {

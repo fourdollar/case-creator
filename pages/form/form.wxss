@@ -1,6 +1,12 @@
 /* pages/form/index.wxss */
-.page-body {
-  padding: 10px 0;
+.form-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  min-height: 100%; 
+  padding: 20rpx 0;
 }
 .page-section {
   margin-bottom: 10px;
@@ -62,7 +68,6 @@
   align-items: center;
 }
 .submit-button {
-  position: absolute;
-  width: 100%;
-  bottom: 30rpx;
+  margin: 30rpx auto;
+  height:80rpx;
 }

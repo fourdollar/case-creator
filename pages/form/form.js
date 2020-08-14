@@ -1,16 +1,13 @@
 // pages/form/index.js
 const app = getApp()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     email:"",
     title:"",
     desc:"",
     result:"",
-    error:""
+    error:"",
+    openId:""
   },
   emailInput:function(e){
     this.setData({
@@ -32,6 +29,9 @@ Page({
    */
   onLoad: function(option){
     console.log(app.globalData.userInfo.nickName);
+    this.setData({
+      openId: app.globalData.openId,
+    })
     // console.log(option.query)
     // const eventChannel = this.getOpenerEventChannel()
     // eventChannel.emit('acceptDataFromOpenedPage', {data: 'test'});
@@ -56,19 +56,6 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -76,21 +63,8 @@ Page({
   onPullDownRefresh: function () {
 
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
   submitCase: function(){
+    // 检查用户输入
     this.setData({
       error:""
     })
@@ -107,24 +81,42 @@ Page({
         error:"desciption不能为空"
       })
     } else {
-      this.setData({
-        result:JSON.stringify({
+      var that = this;
+      // 提交case
+      wx.request({
+        url: 'http://47.101.58.35/api/wechat/submitCase',
+        data:{
+          openId:app.globalData.openId,
           email:this.data.email,
           title:this.data.title,
-          desc:this.data.desc
-        })
-      })
-      wx.showToast({ // 显示Toast
-        title: '已发送',
-        icon: 'success',
-        duration: 1500
+          desc:this.data.desc,
+        },
+        method:"POST",
+        success: function(res) {
+          console.log(res.data)// 服务器回包信息
+          wx.showToast({ // 显示Toast
+            title: '已发送',
+            icon: 'success',
+            duration: 1500
+          })
+          wx.requestSubscribeMessage({
+            tmplIds: ['1LzItjEHmZRygNk87kiYYH0T_rdEu71wR-RUERL2nSE','lsmCrmrQTYRSflS-uh4NuokYAx1UT7OBRcpswPA2xBE'],
+            success (response) {
+              console.log(response);
+              that.setData({
+                result:JSON.stringify({
+                  email:that.data.email,
+                  title:that.data.title,
+                  desc:that.data.desc,
+                  openId:app.globalData.openId,
+                  subscribeMessage:response
+                })
+              })
+            }
+          })
+        }
       })
     }
-    console.log({
-      email:this.data.email,
-      title:this.data.title,
-      desc:this.data.desc
-    })
     // wx.hideToast() // 隐藏Toast
   }
 },

@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container homepage">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> Login </button>
     <block wx:else>
@@ -7,7 +7,7 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="button-wrap" wx:if="{{hasUserInfo}}">
+  <view class="button-wrap" style="width:70%" wx:if="{{hasUserInfo}}">
     <button type="primary" bindtap="createCase">create case</button>
     <!-- <text class="user-motto">{{motto}}</text> -->
   </view>

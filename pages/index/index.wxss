@@ -1,4 +1,8 @@
 /**index.wxss**/
+.homepage{
+  padding: 200rpx 0;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -18,6 +22,5 @@
 
 .button-wrap {
   margin-top: 100rpx;
-  width: 70%;
 }
 

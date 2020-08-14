@@ -5,21 +5,22 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
+    var that = this;
     // 登录
     wx.login({
       success: res => {
         console.log(res);
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
         wx.request({
           url: 'http://47.101.58.35/api/wechat/login',
           data:{code:res.code},
           method:"POST",
           success: function(response) {
             console.log(response.data)// 服务器回包信息
-            this.globalData.userInfo = response.data.openId
+            var result = JSON.parse(response.data.result);
+            that.globalData.openId = result.openid
           }
         })
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
     // 获取用户信息
@@ -45,6 +46,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    opendId: null
+    openId: null
   }
 })
